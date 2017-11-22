@@ -1,13 +1,27 @@
 Pretty Federal Register
 =================
 
-This chrome extension adds several navigation features to the FR site:
+This chrome extension adds several navigation features to the FR site. It is based around the implicit format that Medicare uses and, as this is merely
+an implicit format, may or may not work for other agencies. It automatically runs on any page with
+URL of the form `https://www.federalregister.gov/documents/*`.
 
-1. It adds hyperlinks to the table of contents, making the items in the TOC link to the relevant parts of the document
-2. It displays the fully qualified path of headers (e.g. "II.B.1" instead of just "1.")
+For an example of what it looks like, install the extension and then navigate to https://www.federalregister.gov/documents/2017/11/16/2017-24067/medicare-program-cy-2018-updates-to-the-quality-payment-program-and-quality-payment-program-extreme
 
-It is based around the implicit format that Medicare uses and, as this is merely
-an implicit format, may or may not work for other agencies.
+## Table of Contents Improvements
+This extension adds hyperlinks to the table of contents, making the items in the TOC link to the
+ relevant parts of the document.  The links added by the extension are indicated with red arrows in
+ this screenshot:
+
+![TOC](TOC.png)
+
+## Header improvements
+This extension modifies the afar page to display the fully qualified path of headers
+(e.g. "II.B.1" instead of just "1."). The links added by this extension are indicated with red arrows
+in this screenshot:
+
+![Headers](headers.png)
+
+
 
 **License**
 Copyright (C) 2017
