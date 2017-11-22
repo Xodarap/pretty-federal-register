@@ -15,7 +15,7 @@ This extension adds hyperlinks to the table of contents, making the items in the
 ![TOC](TOC.png)
 
 ## Header improvements
-This extension modifies the afar page to display the fully qualified path of headers
+This extension modifies the FR page to display the fully qualified path of headers
 (e.g. "II.B.1" instead of just "1."). The links added by this extension are indicated with red arrows
 in this screenshot:
 
