@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+
+  "name": "Pretty Federal Register",
+  "description": "Makes navigating the FR easier.",
+  "version": "1.7",
+  "minimum_chrome_version": "22.0",
+  "icons": {
+  "64": "small icon.png",
+  "128": "big icon.png"
+  },
+
+  "permissions": [
+    "https://www.federalregister.gov/documents/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.federalregister.gov/*"],
+      "js": ["lodash.core.js", "stack.js", "content.js"]
+    }
+  ]
+}
