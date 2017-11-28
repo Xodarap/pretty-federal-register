@@ -1,4 +1,4 @@
-var bulletExpression = /^((V?I{1,3}\.)|([A-Z]\.)|(\d+\.)|([a-z]\.)|(\(\d\))|(\([a-z]\)))/;
+var bulletExpression = /^((V?I{1,3}V?\.)|([A-Z]\.)|(\d+\.)|([a-z]\.)|(\(\d\))|(\([a-z]\))|(\(v?i{1,3}v?\)))/;
 var linkMap = {};
 
 function modifyHeaders() {

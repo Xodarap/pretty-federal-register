@@ -17,7 +17,8 @@
   "content_scripts": [
     {
       "matches": ["https://www.federalregister.gov/*"],
-      "js": ["lodash.core.js", "stack.js", "content.js"]
+      "js": ["lodash.core.js", "jquery-3.2.1.min.js", "jquery.sidebar.min.js",
+        "stack.js", "content.js"]
     }
   ]
 }
