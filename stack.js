@@ -20,8 +20,19 @@ var Stack = function () {
 
   this.modifyStack = function (newBullet, headerId, text) {
     var newLevel = this.bulletLevel(newBullet);
-    var newElement = {children: [], bullet: newBullet};
+    var newElement = {
+      children: [], bullet: newBullet, headerId: headerId,
+      text: text
+    };
     if (newLevel > this.currentLevel) {
+      //More than one level of indent-this probably means an error in their Document
+      if (newLevel > (this.currentLevel + 1)) {
+        for (var i = 0; i < (newLevel - this.currentLevel - 1); i++) {
+          var tempElement = {children: [], bullet: '(Placeholder)', text: 'placeholder', parent: this.currentElement}
+          this.currentElement.children.push(tempElement);
+          this.currentElement = tempElement;
+        }
+      }
       //This bullet represents a further indentation
       newElement.parent = this.currentElement;
       this.currentElement.children.push(newElement);
@@ -31,9 +42,12 @@ var Stack = function () {
     else if (newLevel == this.currentLevel) {
       //This bullet represents a bullet at the same level of indentation
       newElement.parent = this.currentElement.parent;
+
+      //Special case: we are adding a top level bullet
       if (this.currentElement.parent == undefined) {
         newElement.parent = this.currentElement;
         this.currentElement.children.push(newElement);
+      }
       else {
         this.currentElement.parent.children.push(newElement);
       }
@@ -45,7 +59,6 @@ var Stack = function () {
         this.currentElement = this.currentElement.parent;
       }
       newElement.parent = this.currentElement.parent;
-      ;
       this.currentElement.parent.children.push(newElement);
       this.currentElement = newElement;
       this.currentLevel = newLevel;
@@ -89,7 +102,7 @@ var Stack = function () {
             bullet, 2) - 2;
 
     //(i) could be either a letter or a Roman
-    if (bullet != '(i)') {
+    if (bullet != '(i)' && bullet != '(v)') {
       return level;
     }
 
@@ -100,18 +113,40 @@ var Stack = function () {
     else {
       relevantElement = this.currentElement.parent;
     }
-    if (relevantElement.bullet != '(h)') {
+    if ((relevantElement.bullet != '(h)' && bullet == '(i)') ||
+        (relevantElement.bullet != '(u)' && bullet == '(v)')) {
       return 6;
     }
     return level;
   }
 
   this.generateTOC = function () {
-    sidebar = '<div id="pfr-sidebar"></div>';
+    var sidebar = '<div id="pfr-sidebar">' +
+        this.toList()
+    '</div>';
+    $('#main').append(sidebar);
+    $('#pfr-sidebar').sidebar({side: 'left'}).trigger("sidebar:open");
+
   }
 
-  this.generateList = function (node) {
-    return '<li>'
+  this.toList = function () {
+    return this.generateList(this.root, this);
+  }
+
+  this.generateList = function (node, that) {
+    var children = _(node.children).map(function (child) {
+      return that.generateList(child, that);
+    }).value().join('');
+    var returnValue = '<ul class="pfr-list">'
+        + children + '</ul>';
+    if (node.text == undefined) {
+      return returnValue;
+    }
+
+    return '<li>' +
+        '<a href="#' + node.headerId + '">' + node.text + '</a>' +
+        returnValue
+        + '</li>';
   }
 
 };
