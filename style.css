@@ -1,0 +1,15 @@
+ul.pfr-list {
+    /*list-style-type: circle;*/
+    /*list-style-position: outside;*/
+    padding: 0px 10px
+}
+
+#pfr-sidebar {
+    left: 0px;
+    position: fixed;
+    top: 0px;
+    width: 350px;
+    top: 250px;
+    height: 500px;
+    overflow: scroll;
+}

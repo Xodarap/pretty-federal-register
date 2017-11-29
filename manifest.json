@@ -3,7 +3,7 @@
 
   "name": "Pretty Federal Register",
   "description": "Makes navigating the FR easier.",
-  "version": "1.7",
+  "version": "2.0",
   "minimum_chrome_version": "22.0",
   "icons": {
   "64": "small icon.png",
@@ -17,7 +17,9 @@
   "content_scripts": [
     {
       "matches": ["https://www.federalregister.gov/*"],
-      "js": ["lodash.core.js", "stack.js", "content.js"]
+      "js": ["lodash.core.js", "jquery-3.2.1.min.js", "jquery.sidebar.min.js",
+        "stack.js", "content.js"],
+      "css":  ["style.css"]
     }
   ]
 }
