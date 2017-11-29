@@ -82,7 +82,7 @@ var Stack = function () {
     return this.printNode(this.root, this).slice(1);
   }
 
-  //note -> [node]
+  //node -> [node]
   this.printNode = function (node, that) {
     var children = _(node.children).map(function (child) {
       return that.printNode(child, that);
@@ -90,7 +90,7 @@ var Stack = function () {
         .map(function (bullet) {
           return '*' + bullet;
         }).value();
-    //console.log('returning:' + [node.bullet].concat(children))
+
     return [node.bullet].concat(children);
   }
 
@@ -103,8 +103,17 @@ var Stack = function () {
             bullet, 2) - 2;
 
     //(i) could be either a letter or a Roman
-    if (bullet != '(i)' && bullet != '(v)') {
+    if (bullet != '(i)' && bullet != '(v)' && bullet != 'I.') {
       return level;
+    }
+
+    if (bullet  == 'I.'){
+      //The only instance in which I. is intended to be a Roman is
+      //if it is at the highest level
+      if (this.currentElement == this.root){
+        return  0;
+      }
+      return 1;
     }
 
     var relevantElement;
@@ -148,7 +157,6 @@ var Stack = function () {
         returnValue
         + '</li>';
   }
-
 };
 
 if (!inChrome()) {

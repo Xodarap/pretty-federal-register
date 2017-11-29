@@ -84,6 +84,15 @@ describe('Stack', function() {
         '******(a)','******(b)','*******(i)','******(c)', '**B.'],
           stack.toTree());
     });
+    it('should handle ambiguous Roman numerals7', function() {
+      var stack = new s();
+      var expected = ['I.', 'H.', 'I.']
+      _(expected).each(function(bullet) {
+        stack.modifyStack(bullet);
+      })
+      assert.deepEqual(['*I.', '**H.', '**I.'],
+          stack.toTree());
+    });
 
     it('should generate lists', function () {
       var stack = new s();
