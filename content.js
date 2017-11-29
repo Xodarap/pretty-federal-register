@@ -11,7 +11,7 @@ function modifyHeaders() {
     var locationLink = ' [<a href="#' + header.element.id + '">' + bulletString + '</a>]'
     header.element.innerHTML = header.element.innerHTML + locationLink;
   }, this)
-  stack.generateTOC();
+  //stack.generateTOC();
 }
 
 function getHeaders() {
@@ -61,4 +61,4 @@ function parseIdentifiers(headers) {
 }
 
 modifyHeaders();
-// modifyTableOfContents();
+modifyTableOfContents();
