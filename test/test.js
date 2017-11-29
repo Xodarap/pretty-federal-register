@@ -16,12 +16,8 @@ describe('Stack', function() {
       stack.modifyStack('I.');
       stack.modifyStack('1.');
       assert.deepEqual(['*I.', '**(Placeholder)', '***1.'], stack.toTree());
-      //assert.equal('I.A.', stack.toString());
     });
-    // var stack = new Stack();
-    // stack.modifyStack('I.');
-    // stack.modifyStack('A.');
-    // stack.toTree();
+
     it('should handle ambiguous Roman numerals1', function() {
       var stack = new s();
       var expected = ['I.', 'A.', '1.', 'a.', '(1)','(a)','(i)']
@@ -78,7 +74,7 @@ describe('Stack', function() {
         '******(a)','******(b)','*******(i)','******(c)', '**B.'],
           stack.toTree());
     });
-    it('should handle ambiguous Roman numerals5', function() {
+    it('should handle ambiguous Roman numerals6', function() {
       var stack = new s();
       var expected = ['I.', 'A.', '1.', 'a.', '(1)','(a)','(b)','(i)', '(c)','B.']
       _(expected).each(function(bullet) {

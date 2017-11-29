@@ -61,4 +61,4 @@ function parseIdentifiers(headers) {
 }
 
 modifyHeaders();
-modifyTableOfContents();
+// modifyTableOfContents();

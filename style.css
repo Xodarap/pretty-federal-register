@@ -1,7 +1,7 @@
 ul.pfr-list {
-    list-style-type: circle;
-    list-style-position: outside;
-    padding: 0px 20px
+    /*list-style-type: circle;*/
+    /*list-style-position: outside;*/
+    padding: 0px 10px
 }
 
 #pfr-sidebar {

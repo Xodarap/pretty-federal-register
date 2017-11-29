@@ -28,7 +28,8 @@ var Stack = function () {
       //More than one level of indent-this probably means an error in their Document
       if (newLevel > (this.currentLevel + 1)) {
         for (var i = 0; i < (newLevel - this.currentLevel - 1); i++) {
-          var tempElement = {children: [], bullet: '(Placeholder)', text: 'placeholder', parent: this.currentElement}
+          var tempElement = {children: [], bullet: '(Placeholder)', text: 'placeholder',
+            parent: this.currentElement}
           this.currentElement.children.push(tempElement);
           this.currentElement = tempElement;
         }
@@ -126,7 +127,6 @@ var Stack = function () {
     '</div>';
     $('#main').append(sidebar);
     $('#pfr-sidebar').sidebar({side: 'left'}).trigger("sidebar:open");
-
   }
 
   this.toList = function () {
@@ -150,12 +150,6 @@ var Stack = function () {
   }
 
 };
-
-var bulletItem = function (parent, bullet) {
-  this.parent = parent;
-  this.children = [];
-  this.bullet = bullet;
-}
 
 if (!inChrome()) {
   module.exports = Stack;
