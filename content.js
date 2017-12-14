@@ -5,13 +5,13 @@ function modifyHeaders() {
   var headers = getHeaders();
   var stack = new Stack();
   headers.each(function (header) {
-    stack.modifyStack(header.bullet, header.element.id, header.element.innerHTML)
+    stack.modifyStack(header.bullet, header.element.id, header.element.innerText)
     var bulletString = stack.toString();
     linkMap[bulletString] = header.element.id;
     var locationLink = ' [<a href="#' + header.element.id + '">' + bulletString + '</a>]'
     header.element.innerHTML = header.element.innerHTML + locationLink;
-  }, this)
-  //stack.generateTOC();
+  }, this);
+  (new TableOfContents(stack)).generateTOC();
 }
 
 function getHeaders() {

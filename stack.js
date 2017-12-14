@@ -103,16 +103,25 @@ var Stack = function () {
             bullet, 2) - 2;
 
     //(i) could be either a letter or a Roman
-    if (bullet != '(i)' && bullet != '(v)' && bullet != 'I.') {
+    if (bullet != '(i)' && bullet != '(v)' && bullet != 'I.'
+        && bullet != 'V.') {
       return level;
     }
 
-    if (bullet  == 'I.'){
+    if (bullet == 'I.') {
       //The only instance in which I. is intended to be a Roman is
       //if it is at the highest level
-      if (this.currentElement == this.root){
-        return  0;
+      if (this.currentElement == this.root) {
+        return 0;
       }
+      return 1;
+    }
+
+    if (bullet ==  'V.') {
+      if(this.currentLevel == 0){
+        return 0;
+      }
+
       return 1;
     }
 
@@ -128,34 +137,6 @@ var Stack = function () {
       return 6;
     }
     return level;
-  }
-
-  this.generateTOC = function () {
-    var sidebar = '<div id="pfr-sidebar">' +
-        this.toList()
-    '</div>';
-    $('#main').append(sidebar);
-    $('#pfr-sidebar').sidebar({side: 'left'}).trigger("sidebar:open");
-  }
-
-  this.toList = function () {
-    return this.generateList(this.root, this);
-  }
-
-  this.generateList = function (node, that) {
-    var children = _(node.children).map(function (child) {
-      return that.generateList(child, that);
-    }).value().join('');
-    var returnValue = '<ul class="pfr-list">'
-        + children + '</ul>';
-    if (node.text == undefined) {
-      return returnValue;
-    }
-
-    return '<li>' +
-        '<a href="#' + node.headerId + '">' + node.text + '</a>' +
-        returnValue
-        + '</li>';
   }
 };
 
