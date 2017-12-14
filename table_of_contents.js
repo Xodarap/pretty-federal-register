@@ -6,6 +6,7 @@ function inChrome() {
     return true;
   }
 }
+
 if (!inChrome()) {
   var _ = require('./lodash.core.js');
 }
@@ -38,7 +39,6 @@ var TableOfContents = function (stack) {
       $('#pfr-sidebar').trigger('sidebar:toggle')
     });;
   }
-
 
   this.toList = function () {
     return this.generateList(this.stack.root, this);
