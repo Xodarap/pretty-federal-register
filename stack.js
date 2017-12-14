@@ -104,15 +104,15 @@ var Stack = function () {
 
     //(i) could be either a letter or a Roman
     if (bullet != '(i)' && bullet != '(v)' && bullet != 'I.'
-    && bullet != 'V.') {
+        && bullet != 'V.') {
       return level;
     }
 
-    if (bullet  == 'I.'){
+    if (bullet == 'I.') {
       //The only instance in which I. is intended to be a Roman is
       //if it is at the highest level
-      if (this.currentElement == this.root){
-        return  0;
+      if (this.currentElement == this.root) {
+        return 0;
       }
       return 1;
     }
