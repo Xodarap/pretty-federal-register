@@ -93,12 +93,5 @@ describe('Stack', function() {
       assert.deepEqual(['*I.', '**H.', '**I.'],
           stack.toTree());
     });
-
-    it('should generate lists', function () {
-      var stack = new s();
-      stack.modifyStack('I.', 1,'Test');
-      stack.modifyStack('A.', 2, 'second');
-      assert.equal('<ul class="pfr-list"><li><a href="#1">Test</a><ul class="pfr-list"><li><a href="#2">second</a><ul class="pfr-list"></ul></li></ul></li></ul>', stack.toList())
-    })
   });
 });

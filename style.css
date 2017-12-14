@@ -5,11 +5,41 @@ ul.pfr-list {
 }
 
 #pfr-sidebar {
+    width: 350px;
     left: 0px;
     position: fixed;
-    top: 0px;
+    top: 50px;
     width: 350px;
-    top: 250px;
-    height: 500px;
-    overflow: scroll;
+    z-index: 100;
+}
+
+#pfr-sidebar-inner {
+    background: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 3px;
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    border: 1px solid #000;
+
+    overflow-y: scroll;
+}
+
+#pfr-collapse {
+    position: fixed;
+    left: 350px;
+    top: 500px;
+    background-color: #3af;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    font-weight: bold;
+    border-radius: 0px 5px  5px 0px;
+    cursor: pointer;
+}
+
+#pfr-collapse a{
+    color: #ffffff;
 }

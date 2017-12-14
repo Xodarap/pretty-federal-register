@@ -129,34 +129,6 @@ var Stack = function () {
     }
     return level;
   }
-
-  this.generateTOC = function () {
-    var sidebar = '<div id="pfr-sidebar">' +
-        this.toList()
-    '</div>';
-    $('#main').append(sidebar);
-    $('#pfr-sidebar').sidebar({side: 'left'}).trigger("sidebar:open");
-  }
-
-  this.toList = function () {
-    return this.generateList(this.root, this);
-  }
-
-  this.generateList = function (node, that) {
-    var children = _(node.children).map(function (child) {
-      return that.generateList(child, that);
-    }).value().join('');
-    var returnValue = '<ul class="pfr-list">'
-        + children + '</ul>';
-    if (node.text == undefined) {
-      return returnValue;
-    }
-
-    return '<li>' +
-        '<a href="#' + node.headerId + '">' + node.text + '</a>' +
-        returnValue
-        + '</li>';
-  }
 };
 
 if (!inChrome()) {
