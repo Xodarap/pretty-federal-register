@@ -103,7 +103,8 @@ var Stack = function () {
             bullet, 2) - 2;
 
     //(i) could be either a letter or a Roman
-    if (bullet != '(i)' && bullet != '(v)' && bullet != 'I.') {
+    if (bullet != '(i)' && bullet != '(v)' && bullet != 'I.'
+    && bullet != 'V.') {
       return level;
     }
 
@@ -113,6 +114,14 @@ var Stack = function () {
       if (this.currentElement == this.root){
         return  0;
       }
+      return 1;
+    }
+
+    if (bullet ==  'V.') {
+      if(this.currentLevel == 0){
+        return 0;
+      }
+
       return 1;
     }
 

@@ -49,6 +49,14 @@ describe('Stack', function () {
       {
         input: ['I.', 'H.', 'I.'],
         output: ['*I.', '**H.', '**I.']
+      },
+      {
+        input: ['I.', 'IV.', 'V.'],
+        output: ['*I.', '*IV.', '*V.']
+      },
+      {
+        input: ['I.', 'A.', 'V.'],
+        output: ['*I.', '**A.', '**V.']
       }
     ];
     _(tests).each(function (test) {
