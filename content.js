@@ -1,17 +1,26 @@
-var bulletExpression = /^((V?I{1,3}V?\.)|([A-Z]\.)|(\d+\.)|([a-z]\.)|(\(\d\))|(\([a-z]\))|(\(v?i{1,3}v?\)))/;
-var linkMap = {};
-
+/**
+ * Modifies all the headers in the documents to have  navigation links
+ * Also builds up linkMap, which modifiedTableOfContents uses to put
+ * links to the headers into the table of contents
+ * @returns {Hash} linkMap – a hash associating the blistering with its internal
+ * representation
+ */
 function modifyHeaders() {
   var headers = getHeaders();
   var stack = new Stack();
+  var display = new Display();
+  var linkMap = {};
+
   headers.each(function (header) {
     stack.modifyStack(header.bullet, header.element.id, header.element.innerText)
-    var bulletString = stack.toString();
-    linkMap[bulletString] = header.element.id;
-    var locationLink = ' [<a href="#' + header.element.id + '">' + bulletString + '</a>]'
-    header.element.innerHTML = header.element.innerHTML + locationLink;
+    var newElement = stack.currentElement;
+    var bulletLink = display.toHierarchicalLink(newElement);
+    linkMap[display.toString(newElement)] = newElement;
+    header.element.innerHTML = header.element.innerHTML +
+        ' [' + bulletLink + ']';
   }, this);
   (new TableOfContents(stack)).generateTOC();
+  return linkMap;
 }
 
 function getHeaders() {
@@ -19,17 +28,19 @@ function getHeaders() {
   return parseIdentifiers(headers);
 }
 
-
-function modifyTableOfContents() {
+//This function modifies the table of contents at the beginning
+//of documents. Note that it does not affect the TOC that we generate
+function modifyTableOfContents(linkMap) {
   var contents = getContents();
   var stack = new Stack();
+  var display = new Display();
   parseIdentifiers(_(contents)).each(function (item) {
     stack.modifyStack(item.bullet);
-    var bulletString = stack.toString();
-    var id = linkMap[bulletString];
+    var bulletString = display.toString(stack.currentElement);
+    var link = display.toLink(linkMap[bulletString]);
 
     item.element.innerHTML = item.element.innerHTML +
-        ' [<a href="#' + id + '">' + bulletString + '</a>]';
+        ' [' + link + ']';
   })
 }
 
@@ -60,5 +71,5 @@ function parseIdentifiers(headers) {
   }).compact();
 }
 
-modifyHeaders();
-modifyTableOfContents();
+var linkMap = modifyHeaders();
+modifyTableOfContents(linkMap);
