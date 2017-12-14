@@ -18,7 +18,7 @@
     {
       "matches": ["https://www.federalregister.gov/*"],
       "js": ["lodash.core.js", "jquery-3.2.1.min.js", "jquery.sidebar.min.js",
-       "stack.js", "table_of_contents.js","content.js"],
+       "stack.js", "table_of_contents.js","display.js","content.js"],
       "css":  ["style.css"]
     }
   ]
