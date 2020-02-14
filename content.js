@@ -71,5 +71,18 @@ function parseIdentifiers(headers) {
   }).compact();
 }
 
+function valentine() {
+  $('#footer').prepend('<div style="margin: auto;width: 350px;background: rgba(238, 85, 85, 0.9);' +
+  'text-align: center;border: 2px solid rgba(238,85,85,1);border-radius: 10px;margin-bottom:10px' +
+  'padding-left: 10px; padding-right: 10px;">' +
+  '<h1 style="font: 700 2vmax \'Calibri\';color: #eee;margin-top: 13px">' +
+  "Happy Valentine's Day Lacey!</h1><div>")
+}
+
+//valentine's day message
+if((new Date()) >= new Date("2020-2-13") && (new Date()) <= new Date("2020-2-14")){
+  valentine();
+}
+
 var linkMap = modifyHeaders();
 modifyTableOfContents(linkMap);

@@ -3,7 +3,7 @@
 
   "name": "Pretty Federal Register",
   "description": "Makes navigating the FR easier.",
-  "version": "3.0",
+  "version": "3.1",
   "minimum_chrome_version": "22.0",
   "icons": {
   "64": "small icon.png",
